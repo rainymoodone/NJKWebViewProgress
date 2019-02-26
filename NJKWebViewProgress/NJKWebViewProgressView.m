@@ -34,6 +34,7 @@
     if ([UIApplication.sharedApplication.delegate.window respondsToSelector:@selector(setTintColor:)] && UIApplication.sharedApplication.delegate.window.tintColor) {
         tintColor = UIApplication.sharedApplication.delegate.window.tintColor;
     }
+    _progressBarView.hidden = YES;
     _progressBarView.backgroundColor = tintColor;
     [self addSubview:_progressBarView];
     
@@ -49,6 +50,7 @@
 
 - (void)setProgress:(float)progress animated:(BOOL)animated
 {
+    _progressBarView.hidden = NO;
     BOOL isGrowing = progress > 0.0;
     [UIView animateWithDuration:(isGrowing && animated) ? _barAnimationDuration : 0.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         CGRect frame = _progressBarView.frame;
